@@ -47,185 +47,185 @@ void spaceInBetween(); //Creates space in between text.
 
 int main()
 {
-	char seatPattern[ROW][COLUMN], l, ans;
-	int s;
+    char seatPattern[ROW][COLUMN], l, ans;
+    int s;
 
-	displaySeatPattern(seatPattern);
+    displaySeatPattern(seatPattern);
 
-	do
-	{
-		inputSeatSelection(seatPattern,s, l);
-		updateSeatPattern(seatPattern, s, l);
+    do
+    {
+        inputSeatSelection(seatPattern,s, l);
+        updateSeatPattern(seatPattern, s, l);
 
-		cout<<"Continue? (y/n): ";
-		cin>>ans;
+        cout<<"Continue? (y/n): ";
+        cin>>ans;
 
-	}while(!(seatsFull(seatPattern)) && (ans == 'y' || ans == 'Y'));
+    }while(!(seatsFull(seatPattern)) && (ans == 'y' || ans == 'Y'));
 
-	return 0;
+    return 0;
 }
 
 void inputSeatSelection(char seatChart[][COLUMN], int& section, char& letter)
 {
-	do
-	{
-		cout<<"Enter seat desired: ";
+    do
+    {
+        cout<<"Enter seat desired: ";
         cin>>section>>letter;
 
-		if(!(isOccupied(seatChart, section, letter)))
-			spaceInBetween();
+        if(!(isOccupied(seatChart, section, letter)))
+            spaceInBetween();
 
-	}while(!(isOccupied(seatChart, section, letter)));
+    }while(!(isOccupied(seatChart, section, letter)));
 
-	cout<<"\n\n";
+    cout<<"\n\n";
 }
 
 
 void displaySeatPattern(char seatChart[][COLUMN])
 {
-	 for (int row = 0; row < ROW; row++)
-	 {
-		 for (int column = 0; column < COLUMN; column++)
-		 {
-			 seatChart[row][column] = produceSeats(row, column);
-		 }
-	 }
+    for (int row = 0; row < ROW; row++)
+    {
+        for (int column = 0; column < COLUMN; column++)
+        {
+            seatChart[row][column] = produceSeats(row, column);
+        }
+    }
 
-	 for (int row = 0; row < ROW; row++)
-	 {
-		 cout<<setw(30);
+    for (int row = 0; row < ROW; row++)
+    {
+        cout<<setw(30);
 
-		 for (int column = 0; column < COLUMN; column++)
-			 cout<<seatChart[row][column];
-		 
-		 cout<<endl;
-	 }
+        for (int column = 0; column < COLUMN; column++)
+            cout<<seatChart[row][column];
+
+        cout<<endl;
+    }
 }
 
 void updateSeatPattern(char seatChart[][COLUMN], int section, char letter)
 {
-	 for (int row = 0; row < ROW; row++)
-	 {
-		 for (int column = 0; column < COLUMN; column++)
-		 {
-			if(((row + 1) == section) && seatChart[row][column] == letter)
-				seatChart[row][column] = 'X';
-		 }
-	 }
+    for (int row = 0; row < ROW; row++)
+    {
+        for (int column = 0; column < COLUMN; column++)
+        {
+            if(((row + 1) == section) && seatChart[row][column] == letter)
+                seatChart[row][column] = 'X';
+        }
+    }
 
-	 for (int row = 0; row < ROW; row++)
-	 {
-		 cout<<setw(30);
+    for (int row = 0; row < ROW; row++)
+    {
+        cout<<setw(30);
 
-		 for (int column = 0; column < COLUMN; column++)
-			 cout<<seatChart[row][column];
-		 
-		 cout<<endl;
-	 }
+        for (int column = 0; column < COLUMN; column++)
+            cout<<seatChart[row][column];
+
+        cout<<endl;
+    }
 }
 
 char produceSeats(int row, int column)
 {
-	switch (column)
-	{
-	   case 0:
-		   return getSection(row);
-		   break;
-	   case 1:
-		   return ' ';
-		   break;
-	   case 2:
-		   return ' ';
-		   break;
-	   case 3: 
-		   return 'A';
-		   break;
-	   case 4: 
-		   return 'B';
-		   break;
-	   case 5:
-		   return ' ';
-		   break;
-	   case 6:
-		   return 'C';
-		   break;
-	   case 7:
-		   return 'D';
-		   break;
-	   default:
-	   {
-		   cout<<"Fatal Error: Aborting program.";
-		   exit(1);
-		   return ' '; // To make compiler happy.
-		   break;
-	   }
-	}
+    switch (column)
+    {
+        case 0:
+            return getSection(row);
+            break;
+        case 1:
+            return ' ';
+            break;
+        case 2:
+            return ' ';
+            break;
+        case 3: 
+            return 'A';
+            break;
+        case 4: 
+            return 'B';
+            break;
+        case 5:
+            return ' ';
+            break;
+        case 6:
+            return 'C';
+            break;
+        case 7:
+            return 'D';
+            break;
+        default:
+            {
+                cout<<"Fatal Error: Aborting program.";
+                exit(1);
+                return ' '; // To make compiler happy.
+                break;
+            }
+    }
 }
 
 char getSection(int row)
 {
-	switch (row)
-	{
-	   case 0:
-		   return '1';
-		   break;
-	   case 1:
-		   return '2';
-		   break;
-	   case 2:
-		   return '3';
-		   break;
-	   case 3:
-		   return '4';
-		   break;
-	   case 4:
-		   return '5';
-		   break;
-	   case 5:
-		   return '6';
-		   break;
-	   case 6:
-		   return '7';
-		   break;
-	   default:
-	   {
-		   cout<<"Fatal Error: Aborting program.";
-		   exit(1);
-		   return ' '; //To make compiler happy.
-		   break;
-       }
-	}
+    switch (row)
+    {
+        case 0:
+            return '1';
+            break;
+        case 1:
+            return '2';
+            break;
+        case 2:
+            return '3';
+            break;
+        case 3:
+            return '4';
+            break;
+        case 4:
+            return '5';
+            break;
+        case 5:
+            return '6';
+            break;
+        case 6:
+            return '7';
+            break;
+        default:
+            {
+                cout<<"Fatal Error: Aborting program.";
+                exit(1);
+                return ' '; //To make compiler happy.
+                break;
+            }
+    }
 }
 
 bool seatsFull(char seatChart[][COLUMN])
 {
-	for (int row = 0; row < ROW; row++)
-	 {
-		 for (int column = 3; column < COLUMN; column++)
-		 {
-			 if (seatChart[row][column] != 'X' && column != 5)
-				 return false;
-		 }
-	 }
-	
-	return true;
+    for (int row = 0; row < ROW; row++)
+    {
+        for (int column = 3; column < COLUMN; column++)
+        {
+            if (seatChart[row][column] != 'X' && column != 5)
+                return false;
+        }
+    }
+
+    return true;
 }
 
 bool isOccupied (char seatChart[][COLUMN], int section, char letter)
 {
-	for (int row = 0; row < ROW; row++)
-	{
-		for (int column = 0; column < COLUMN; column++)
-		{
-			if(((row + 1) == section) && (seatChart[row][column] == letter))
-				return true;
-		}
-	}
+    for (int row = 0; row < ROW; row++)
+    {
+        for (int column = 0; column < COLUMN; column++)
+        {
+            if(((row + 1) == section) && (seatChart[row][column] == letter))
+                return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 void spaceInBetween()
 {
-	cout<<"\n\n";
+    cout<<"\n\n";
 }
